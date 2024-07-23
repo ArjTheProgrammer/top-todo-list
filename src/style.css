@@ -2,7 +2,9 @@
   --color-60: #fff3c7;
   --color-30: #fec7b4;
   --color-10: #fc819e;
+  --color-10-focus: #fc819ec5;
   --color-hl: #f7418f;
+  --color-hl-focus: #f74190b3;
 }
 
 body {
@@ -82,4 +84,44 @@ main {
   height: 85%;
   width: 90%;
   border-radius: 20px;
+  position: relative;
+}
+
+.taskInputContainer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 90%;
+  padding: 15px 30px;
+}
+
+.taskInputContainer > input {
+  border: none;
+}
+
+.taskInputContainer > :first-child {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: var(--color-10);
+  border-radius: 10px 0px 0px 10px;
+}
+
+.taskInputContainer > :nth-child(2) {
+  background-color: var(--color-hl);
+  border: none;
+  border-radius: 0px 10px 10px 0px;
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.taskInputContainer > :first-child:focus {
+  background-color: var(--color-10-focus);
+  border: none;
+}
+
+.taskInputContainer > :nth-child(2):hover {
+  cursor: pointer;
+  background-color: var(--color-hl-focus);
 }
