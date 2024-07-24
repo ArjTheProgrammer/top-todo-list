@@ -1,16 +1,9 @@
 export function taskInput(){
     const main = document.querySelector("main");
-    const taskInputContainer = document.createElement("div");
-    taskInputContainer.className = "taskInputContainer";
+    const taskInputButton = document.createElement("button");
 
-    const inputBox = document.createElement("input");
-    inputBox.setAttribute("type", "text");
+    taskInputButton.textContent = "+";
+    taskInputButton.className = "taskInputButton";
 
-    const addTaskButton = document.createElement("input");
-    inputBox.setAttribute("type", "submit");
-
-
-    taskInputContainer.append(addTaskButton);
-    taskInputContainer.append(inputBox);
-    main.append(taskInputContainer);
+    main.append(taskInputButton);
 }
