@@ -1,47 +1,68 @@
 :root {
-  --color-60: #fff3c7;
-  --color-30: #fec7b4;
-  --color-10: #fc819e;
-  --color-10-focus: #fc819ec5;
-  --color-hl: #f7418f;
-  --color-hl-focus: #f74190b3;
+  --primary-color: #f26b38; /* Orange */
+  --primary-color-400: #f58549; /* Medium Orange */
+  --primary-color-200: #f89f5a; /* Light Orange */
+  --primary-color-100: #fbb96b; /* Very Light Orange */
+  --secondary-color: #ffd700; /* Gold */
+  --secondary-color-400: #ffeb3b; /* Light Gold */
+  --secondary-color-300: #fff576; /* Lighter Gold */
+  --secondary-color-200: #fff9b1; /* Very Light Gold */
+  --secondary-color-100: #ffffcc; /* Pale Gold */
+  --neutral-color: #000000; /* Black */
+  --neutral-color-700: #404040;
+  --neutral-color-600: #808080;
+  --neutral-color-500: #c0c0c0;
+  --neutral-color-400: #e0e0e0;
+  --neutral-color-300: #f0f0f0;
+  --neutral-color-200: #f8f8f8;
+  --neutral-color-150: #fcfcfc;
+  --neutral-color-100: #ffffff;
+  --neutral-color-50: #ffffff;
+  --do-color: #ff4500; /* OrangeRed */
+  --schedule-color: #ffd700; /* Gold */
+  --delegate-color: #1e90ff; /* DodgerBlue */
+  --eliminate-color: #808080; /* Gray */
+  --text-color: var(--neutral-color);
+  --text-color-white: var(--neutral-color-50);
+  --background-color: var(--neutral-color-200);
+  --surface-color: var(--neutral-color-50);
 }
 
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100vw;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  background-color: var(--color-60);
+  grid-template-columns: 1fr 4fr;
+  gap: 10px;
+  background-color: var(--neutral-color-100);
+  color: var(--neutral-color);
 }
 
 nav {
-  padding: 30px 20px;
-  margin: 20px;
-  background-color: var(--color-30);
-  height: 85%;
-  width: 80%;
-  border-radius: 20px;
+  padding: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--neutral-color-300);
+  box-shadow: 10px 0 15px -10px var(--neutral-color);
 }
 
 nav > button {
   display: flex;
   font-size: 1.3rem;
   align-items: center;
-  width: 200px;
   gap: 15px;
   padding: 10px 20px;
   font-weight: 750;
-  width: 100%;
-  background: none;
   border: none;
-  border-radius: 20px;
+  width: 100%;
 }
 
 nav > button:hover {
-  background-color: var(--color-10);
+  background-color: var(--neutral-color-400);
 }
 
 nav > button > svg {
@@ -52,57 +73,124 @@ nav > button > svg {
 .project-nav {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  position: relative;
 }
 
 .project-nav > h1 {
   font-size: 2rem;
   font-weight: 800;
   padding-left: 20px;
-}
-
-.project-nav > .project-container {
-  height: 300px;
+  margin: 20px 0px 0px 0px;
+  border-bottom: 1px solid var(--neutral-color-600);
 }
 
 .project-nav > .project-add {
-  justify-self: flex-end;
-  display: flex;
   background: none;
   border: none;
+  display: flex;
+  padding: 20px;
   font-size: 1.15rem;
-  border-radius: 20px;
-  padding-left: 20px;
-  align-items: end;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .project-nav > .project-add:hover {
-  background-color: var(--color-10);
+  background-color: var(--neutral-color-400);
 }
 
 /*main*/
 main {
-  padding: 30px 20px;
-  margin: 20px;
-  background-color: var(--color-30);
-  height: 85%;
-  width: 90%;
-  border-radius: 20px;
-  position: relative;
 }
 
 .taskInputButton {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 10px;
   margin: 20px;
-  font-size: 2rem;
+  font-size: 3rem;
   padding: 20px 30px;
   border-radius: 100px;
   border: none;
-  background-color: var(--color-hl);
+  background-color: var(--primary-color-200);
+  color: var(--neutral-color-100);
 }
 
 .taskInputButton:hover {
   cursor: pointer;
-  background-color: var(--color-hl-focus);
+  background-color: var(--primary-color-100);
+}
+
+/*add task design*/
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.629);
+}
+
+dialog {
+  background-color: var(--primary-color-100);
+  padding: 20px;
+  border: none;
+  box-shadow: 3px 10px 10px var(--neutral-color-700);
+  border-radius: 20px;
+}
+
+dialog > form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+dialog > form > :nth-child(2) {
+  align-self: end;
+  padding: 10px 17px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  position: absolute;
+}
+
+form > .form-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 20px;
+  align-items: center;
+}
+
+form > .form-container > input,
+form > .form-container > textArea {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+}
+
+form > .form-container .label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+form > :last-child {
+  align-self: flex-end;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-radius: 100px;
+  border: none;
+  background-color: var(--primary-color);
+}
+
+.form-container > .prio-container {
+  display: flex;
+}
+
+.form-container > .prio-container > input {
+  height: 20px;
+  width: 20px;
+}
+
+.form-container > .prio-container > label {
+  padding-right: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
 }

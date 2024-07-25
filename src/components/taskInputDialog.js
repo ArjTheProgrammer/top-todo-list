@@ -25,6 +25,7 @@ export function taskInputDialog(){
     closeButton.textContent = "X";
     form.setAttribute("method","dialog");   
     taskDate.setAttribute("type","date");
+    taskDescription.setAttribute("rows", 4);
     submitButton.setAttribute("type", "submit");
 
     const prioContents = [urgentCheckbox, urgentCheckboxLabel, importantCheckbox,  importantCheckboxLabel];
@@ -55,6 +56,7 @@ export function taskInputDialog(){
         if(i !== 2){
             inputs[i].id = `${textContent[i]}`;
         }
+        labels[i].className = "label";
         labels[i].textContent = textContent[i];
         formContainer.append(labels[i]);
         formContainer.append(inputs[i]);
