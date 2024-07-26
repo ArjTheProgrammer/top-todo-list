@@ -45,7 +45,9 @@ export function taskInputDialog(){
             }
         }
         prioContainer.append(prioContent);
-    }
+    };
+
+    checkPrio(urgentCheckbox, importantCheckbox);
 
 
     const labels = [taskLabel, taskDateLabel, taskPrioLabel, taskDescriptionLabel];
@@ -69,4 +71,47 @@ export function taskInputDialog(){
     dialog.append(form);
     main.append(dialog);
     dialog.showModal();
+}
+
+function checkPrio(urgent, important){
+    urgent.addEventListener("click", () => {
+        if (urgentCheckbox.checked && importantCheckbox.checked){
+            console.log('do');
+            return 'do';
+        }
+        else if (urgentCheckbox.checked && !importantCheckbox.checked){
+            console.log('important');
+            return 'important';
+        }
+        else if (!urgentCheckbox.checked && importantCheckbox.checked){
+            console.log('schedule');
+            return 'schedule';
+        }
+        else{
+            console.log('delete');
+            return "delete";
+        }
+    });
+
+    important.addEventListener("click", () => {
+        if (urgentCheckbox.checked && importantCheckbox.checked){
+            console.log('do');
+            return 'do';
+        }
+        else if (urgentCheckbox.checked && !importantCheckbox.checked){
+            console.log('important');
+            return 'important';
+        }
+        else if (!urgentCheckbox.checked && importantCheckbox.checked){
+            console.log('schedule');
+            return 'schedule';
+        }
+        else{
+            console.log('delete');
+            return "delete";
+        }
+    });
+
+    console.log("delete");
+    return "delete";
 }
