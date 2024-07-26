@@ -246,3 +246,15 @@ form > :last-child:hover {
   font-weight: 700;
   font-size: 1.2rem;
 }
+
+.matrix-viewer {
+  width: max(100px);
+  height: auto;
+  background-color: #000000;
+  color: var(--neutral-color-100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  font-weight: 700;
+}

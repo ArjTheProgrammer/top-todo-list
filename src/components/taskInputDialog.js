@@ -1,26 +1,30 @@
-export function taskInputDialog(){
-    const main = document.querySelector("main");
-    const dialog = document.createElement("dialog");
-    const form = document.createElement("form");   
-    const formContainer = document.createElement("div");
-    formContainer.className = "form-container";
-    const newTaskHeader = document.createElement('h1');
-    const taskLabel = document.createElement("label");
-    const taskDateLabel = document.createElement("label");
-    const taskPrioLabel = document.createElement("div");
-    const taskDescriptionLabel = document.createElement("label");
-    const closeButton = document.createElement("button");
-    const task = document.createElement("input");
-    const taskDate = document.createElement("input");
-    const prioContainer = document.createElement('div');
-    prioContainer.className = "prio-container"
-    const urgentCheckbox = document.createElement("input");
-    const importantCheckbox = document.createElement("input");
-    const urgentCheckboxLabel = document.createElement("label");
-    const importantCheckboxLabel = document.createElement("label");
-    const taskDescription = document.createElement("textarea");
-    const submitButton = document.createElement("input");
+import { matrixColors } from "../colors.js";
 
+const main = document.querySelector("main");
+const dialog = document.createElement("dialog");
+const form = document.createElement("form");   
+const formContainer = document.createElement("div");
+formContainer.className = "form-container";
+const newTaskHeader = document.createElement('h1');
+const taskLabel = document.createElement("label");
+const taskDateLabel = document.createElement("label");
+const taskPrioLabel = document.createElement("div");
+const taskDescriptionLabel = document.createElement("label");
+const closeButton = document.createElement("button");
+const task = document.createElement("input");
+const taskDate = document.createElement("input");
+const prioContainer = document.createElement('div');
+prioContainer.className = "prio-container";
+const urgentCheckbox = document.createElement("input");
+const importantCheckbox = document.createElement("input");
+const urgentCheckboxLabel = document.createElement("label");
+const importantCheckboxLabel = document.createElement("label");
+const matrix = document.createElement("div");
+matrix.className = "matrix-viewer";
+const taskDescription = document.createElement("textarea");
+const submitButton = document.createElement("input");
+
+export function taskInputDialog(){
     newTaskHeader.textContent = "New Task";
     closeButton.textContent = "X";
     form.setAttribute("method","dialog");   
@@ -28,6 +32,7 @@ export function taskInputDialog(){
     taskDescription.setAttribute("rows", 4);
     submitButton.setAttribute("type", "submit");
 
+//for prio
     const prioContents = [urgentCheckbox, urgentCheckboxLabel, importantCheckbox,  importantCheckboxLabel];
     
     for (let prioContent of prioContents){
@@ -46,10 +51,17 @@ export function taskInputDialog(){
         }
         prioContainer.append(prioContent);
     };
+    
+    for (let i = 0; i <= prioContents.length - 1; i++){ 
+        prioContents[i].addEventListener("click", () => {
+            updateMatrix(checkPrio(urgentCheckbox, importantCheckbox));
+        });
+    }
 
-    checkPrio(urgentCheckbox, importantCheckbox);
-
-
+    updateMatrix(checkPrio(urgentCheckbox, importantCheckbox));
+    prioContainer.append(matrix);
+   
+    //for inputs
     const labels = [taskLabel, taskDateLabel, taskPrioLabel, taskDescriptionLabel];
     const inputs = [task, taskDate, prioContainer, taskDescription];
     const textContent = ["Title", "Due-date", "Priority", "Description"];
@@ -73,45 +85,34 @@ export function taskInputDialog(){
     dialog.showModal();
 }
 
-function checkPrio(urgent, important){
-    urgent.addEventListener("click", () => {
-        if (urgentCheckbox.checked && importantCheckbox.checked){
-            console.log('do');
-            return 'do';
-        }
-        else if (urgentCheckbox.checked && !importantCheckbox.checked){
-            console.log('important');
-            return 'important';
-        }
-        else if (!urgentCheckbox.checked && importantCheckbox.checked){
-            console.log('schedule');
-            return 'schedule';
-        }
-        else{
-            console.log('delete');
-            return "delete";
-        }
-    });
+function updateMatrix(prio){
+    if (prio == "do"){
+        matrix.textContent = "DO";
+        matrix.style.backgroundColor = `${matrixColors.do}`;
+    }
+    else if (prio == "decide"){
+        matrix.textContent = "DECIDE";
+        matrix.style.backgroundColor = `${matrixColors.decide}`;
+    }
+    else if (prio == "delegate"){
+        matrix.textContent = "DELEGATE";
+        matrix.style.backgroundColor = `${matrixColors.delegate}`;
+    }
+    else {
+        matrix.textContent = "DELETE";
+        matrix.style.backgroundColor = `${matrixColors.delete}`;
+    }
+}
 
-    important.addEventListener("click", () => {
-        if (urgentCheckbox.checked && importantCheckbox.checked){
-            console.log('do');
-            return 'do';
-        }
-        else if (urgentCheckbox.checked && !importantCheckbox.checked){
-            console.log('important');
-            return 'important';
-        }
-        else if (!urgentCheckbox.checked && importantCheckbox.checked){
-            console.log('schedule');
-            return 'schedule';
-        }
-        else{
-            console.log('delete');
-            return "delete";
-        }
-    });
-
-    console.log("delete");
-    return "delete";
+export function checkPrio(urgent, important){
+    if (urgent.checked && important.checked){
+        return "do";
+    }        
+    else if (!urgent.checked && important.checked){
+        return "decide";
+    }
+    else if (urgent.checked && !important.checked){
+        return "delegate";
+    }
+        return "delete";
 }
