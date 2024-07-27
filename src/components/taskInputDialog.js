@@ -122,6 +122,10 @@ export function checkPrio(urgent, important){
 
 let data = [];
 
+closeButton.addEventListener("click", () => {
+    clear();
+})
+
 submitButton.addEventListener("click", () => {
     getInput(taskTitle.value, taskDate.value, checkPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
 });

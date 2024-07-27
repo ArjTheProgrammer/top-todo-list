@@ -25,6 +25,7 @@
 }
 
 button:hover {
+  transition: color 0.3s ease, background-color 0.5s ease;
   cursor: pointer;
 }
 
@@ -59,7 +60,7 @@ footer {
   grid-area: footer;
   justify-content: center;
   background-color: var(--primary-color);
-  padding: 10px 20px;
+  padding: 3px 10px;
 }
 
 header,
@@ -74,7 +75,7 @@ aside {
   padding-top: 20px;
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-color-400);
+  background-color: var(--primary-color);
   box-shadow: 1px 3px 5px var(--neutral-color-600);
 }
 aside > span {
@@ -94,12 +95,11 @@ aside > button {
   font-weight: 750;
   border: none;
   width: 100%;
-  background-color: var(--primary-color-400);
+  background-color: var(--primary-color);
 }
 
 aside > button:hover {
   color: var(--neutral-color-150);
-  background-color: var(--primary-color);
 }
 
 aside > button > svg {
@@ -136,14 +136,9 @@ aside > button > svg {
 
 .project-aside > .project-add:hover {
   color: var(--neutral-color-150);
-  background-color: var(--primary-color);
 }
 
-/*main*/
-main {
-  grid-area: main;
-}
-
+/* task input button*/
 .taskInputButton {
   position: absolute;
   bottom: 0;
@@ -258,4 +253,70 @@ form > :last-child:hover {
   align-items: center;
   padding: 5px 10px;
   font-weight: 700;
+}
+
+/*main*/
+main {
+  grid-area: main;
+  display: grid;
+  grid-auto-rows: minmax(4rem, 4rem);
+  gap: 20px;
+  align-items: center;
+  margin: 25px 40px;
+}
+
+/*task card*/
+.task-card {
+  background-color: var(--neutral-color-500);
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 4px 4px 4px var(--neutral-color-700);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: max(97%, 730px);
+  cursor: pointer;
+}
+
+.task-card:hover {
+  box-shadow: 8px 8px 8px var(--neutral-color-700);
+  transform: translateY(-10px);
+}
+
+.task-card > span {
+  font-size: 1.1rem;
+}
+
+.task-card > div {
+  background-color: var(--neutral-color-150);
+  padding: 5px 0px 5px 10px;
+  width: clamp(100px, 10%, 150px);
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  font-size: 1.1rem;
+  gap: 10px;
+  position: relative;
+}
+
+.task-card > div > input[type="checkbox"] {
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  right: 10px;
+  border-radius: 50%;
+  appearance: none;
+  border: 2px solid var(--neutral-color-500);
+  cursor: pointer;
+}
+
+.task-card > div > input[type="checkbox"]:checked {
+  background-color: var(--secondary-color-400);
+  border-color: var(--secondary-color-400);
+}
+
+.task-card > span:nth-child(3) {
+  padding: 0px 10px;
+  width: min(8%);
 }
