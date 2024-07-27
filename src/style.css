@@ -18,14 +18,14 @@
   --neutral-color-150: #fcfcfc;
   --neutral-color-100: #ffffff;
   --neutral-color-50: #ffffff;
-  --do-color: #ff4500; /* OrangeRed */
-  --schedule-color: #ffd700; /* Gold */
-  --delegate-color: #1e90ff; /* DodgerBlue */
-  --eliminate-color: #808080; /* Gray */
   --text-color: var(--neutral-color);
   --text-color-white: var(--neutral-color-50);
   --background-color: var(--neutral-color-200);
   --surface-color: var(--neutral-color-50);
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 body {
@@ -50,12 +50,15 @@ header {
   grid-area: header;
   display: flex;
   height: 20px;
+  background-color: var(--neutral-color-300);
   padding: 10px 20px;
+  box-shadow: 10px 10px 10px var(--neutral-color-500);
 }
 
 footer {
   grid-area: footer;
   justify-content: center;
+  background-color: var(--primary-color);
   padding: 10px 20px;
 }
 
@@ -63,7 +66,6 @@ header,
 footer {
   display: flex;
   align-items: center;
-  background-color: var(--primary-color);
   font-weight: 600;
 }
 
@@ -73,10 +75,10 @@ aside {
   display: flex;
   flex-direction: column;
   background-color: var(--primary-color-400);
-  box-shadow: 4px 4px 10px var(--neutral-color-600);
+  box-shadow: 1px 3px 5px var(--neutral-color-600);
 }
 aside > span {
-  font-size: 2.5rem;
+  font-size: min(2rem, 2.5rem);
   font-weight: 800;
   width: 200px;
   padding-left: 20px;
@@ -250,7 +252,6 @@ form > :last-child:hover {
 .matrix-viewer {
   width: max(100px);
   height: auto;
-  background-color: #000000;
   color: var(--neutral-color-100);
   display: flex;
   justify-content: center;

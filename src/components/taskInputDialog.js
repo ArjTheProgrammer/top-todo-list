@@ -1,4 +1,5 @@
 import { matrixColors } from "../colors.js";
+import { task } from "../classes/task.js";
 
 const main = document.querySelector("main");
 const dialog = document.createElement("dialog");
@@ -11,7 +12,7 @@ const taskDateLabel = document.createElement("label");
 const taskPrioLabel = document.createElement("div");
 const taskDescriptionLabel = document.createElement("label");
 const closeButton = document.createElement("button");
-const task = document.createElement("input");
+const taskTitle = document.createElement("input");
 const taskDate = document.createElement("input");
 const prioContainer = document.createElement('div');
 prioContainer.className = "prio-container";
@@ -24,6 +25,12 @@ matrix.className = "matrix-viewer";
 const taskDescription = document.createElement("textarea");
 const submitButton = document.createElement("input");
 
+const prioContents = [urgentCheckbox, urgentCheckboxLabel, importantCheckbox,  importantCheckboxLabel];
+
+const labels = [taskLabel, taskDateLabel, taskPrioLabel, taskDescriptionLabel];
+const inputs = [taskTitle, taskDate, prioContainer, taskDescription];
+const textContent = ["Title", "Due-date", "Priority", "Description"];
+
 export function taskInputDialog(){
     newTaskHeader.textContent = "New Task";
     closeButton.textContent = "X";
@@ -33,7 +40,6 @@ export function taskInputDialog(){
     submitButton.setAttribute("type", "submit");
 
 //for prio
-    const prioContents = [urgentCheckbox, urgentCheckboxLabel, importantCheckbox,  importantCheckboxLabel];
     
     for (let prioContent of prioContents){
         if(prioContent.tagName == "INPUT"){
@@ -62,9 +68,6 @@ export function taskInputDialog(){
     prioContainer.append(matrix);
    
     //for inputs
-    const labels = [taskLabel, taskDateLabel, taskPrioLabel, taskDescriptionLabel];
-    const inputs = [task, taskDate, prioContainer, taskDescription];
-    const textContent = ["Title", "Due-date", "Priority", "Description"];
     
     for(let i = 0; i < labels.length; i++){
         if(i !== 2){
@@ -114,5 +117,27 @@ export function checkPrio(urgent, important){
     else if (urgent.checked && !important.checked){
         return "delegate";
     }
-        return "delete";
+    return "delete";
+}
+
+let data = [];
+
+submitButton.addEventListener("click", () => {
+    getInput(taskTitle.value, taskDate.value, checkPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
+});
+
+function getInput(title, date, prio, desc){
+    let addTask = new task(title, date, prio, desc);
+    data.push(addTask);
+    console.table(data);
+    clear();
+}
+
+function clear(){
+    inputs.forEach(input => {
+        input.value = "";
+    });
+    prioContents.forEach(checkbox => {
+        checkbox.checked = false;
+    })
 }
