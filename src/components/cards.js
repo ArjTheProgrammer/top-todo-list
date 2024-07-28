@@ -17,7 +17,7 @@ export function taskCard(title, date, prio){
     prioContainer.textContent = prio;
     statusLabel.textContent = "ongoing";
 
-    prioContainer.style.borderLeft = `10px solid ${applyColor(prio, matrixColors)}`;
+    prioContainer.style.borderLeft = `10px solid ${matrixColors[prio]}`;
 
     
     statusCheckbox.addEventListener("click", () => {
