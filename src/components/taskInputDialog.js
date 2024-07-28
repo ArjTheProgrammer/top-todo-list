@@ -60,11 +60,11 @@ export function taskInputDialog(){
     
     for (let i = 0; i <= prioContents.length - 1; i++){ 
         prioContents[i].addEventListener("click", () => {
-            updateMatrix(checkPrio(urgentCheckbox, importantCheckbox));
+            updateMatrix(getPrio(urgentCheckbox, importantCheckbox));
         });
     }
 
-    updateMatrix(checkPrio(urgentCheckbox, importantCheckbox));
+    updateMatrix(getPrio(urgentCheckbox, importantCheckbox));
     prioContainer.append(matrix);
    
     //for inputs
@@ -107,7 +107,7 @@ function updateMatrix(prio){
     }
 }
 
-export function checkPrio(urgent, important){
+export function getPrio(urgent, important){
     if (urgent.checked && important.checked){
         return "do";
     }        
@@ -127,7 +127,7 @@ closeButton.addEventListener("click", () => {
 })
 
 submitButton.addEventListener("click", () => {
-    getInput(taskTitle.value, taskDate.value, checkPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
+    getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
 });
 
 function getInput(title, date, prio, desc){
