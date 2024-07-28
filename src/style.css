@@ -18,10 +18,9 @@
   --neutral-color-150: #fcfcfc;
   --neutral-color-100: #ffffff;
   --neutral-color-50: #ffffff;
-  --text-color: var(--neutral-color);
-  --text-color-white: var(--neutral-color-50);
-  --background-color: var(--neutral-color-200);
-  --surface-color: var(--neutral-color-50);
+  --card-title-width: min(20%);
+  --card-date-width: max(100px);
+  --card-prio-width: min(8%);
 }
 
 button:hover {
@@ -286,6 +285,20 @@ main {
 
 .task-card > span {
   font-size: 1.1rem;
+}
+
+.task-card > span:first-of-type {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  text-align: center;
+  width: var(--card-title-width);
+  padding-left: 10px;
+}
+
+.task-card > span:nth-of-type(2) {
+  width: var(--card-date-width);
+  text-align: center;
 }
 
 .task-card > div {

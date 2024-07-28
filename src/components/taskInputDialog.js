@@ -1,5 +1,7 @@
 import { matrixColors } from "../colors.js";
 import { task } from "../classes/task.js";
+import { taskCard } from "./cards.js";
+import { allTask } from "./arrays.js";
 
 const main = document.querySelector("main");
 const dialog = document.createElement("dialog");
@@ -34,7 +36,11 @@ const textContent = ["Title", "Due-date", "Priority", "Description"];
 export function taskInputDialog(){
     newTaskHeader.textContent = "New Task";
     closeButton.textContent = "X";
-    form.setAttribute("method","dialog");   
+    form.setAttribute("method","dialog");
+    taskTitle.setAttribute("required", ""); 
+    taskTitle.setAttribute("maxlength", "64");
+    taskTitle.placeholder = "What's the task? (limited to 64 characters)";
+    taskDate.setAttribute("required", "");   
     taskDate.setAttribute("type","date");
     taskDescription.setAttribute("rows", 4);
     submitButton.setAttribute("type", "submit");
@@ -72,6 +78,7 @@ export function taskInputDialog(){
     for(let i = 0; i < labels.length; i++){
         if(i !== 2){
             inputs[i].id = `${textContent[i]}`;
+            inputs[i].name = `${textContent[i]}`;
         }
         labels[i].className = "label";
         labels[i].textContent = textContent[i];
@@ -87,6 +94,21 @@ export function taskInputDialog(){
     main.append(dialog);
     dialog.showModal();
 }
+
+closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    clear();
+    dialog.close();
+});
+
+submitButton.addEventListener("click", (e) => {
+    if (!taskTitle.value == ""){
+        getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
+        dialog.close();
+        clear();
+        e.preventDefault();
+    }
+});
 
 function updateMatrix(prio){
     if (prio == "do"){
@@ -120,20 +142,11 @@ export function getPrio(urgent, important){
     return "delete";
 }
 
-let data = [];
-
-closeButton.addEventListener("click", () => {
-    clear();
-})
-
-submitButton.addEventListener("click", () => {
-    getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
-});
-
 function getInput(title, date, prio, desc){
     let addTask = new task(title, date, prio, desc);
-    data.push(addTask);
-    console.table(data);
+    allTask.push(addTask);
+    taskCard(title, date, prio);
+    console.table(allTask);
     clear();
 }
 

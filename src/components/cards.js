@@ -13,7 +13,7 @@ export function taskCard(title, date, prio){
     statusCheckbox.setAttribute("type", "checkbox");
 
     titleContainer.textContent = title;
-    dateContainer.textContent = date;
+    dateContainer.textContent =  date == "" ? "none" : date;
     prioContainer.textContent = prio;
     statusLabel.textContent = "ongoing";
 
@@ -37,8 +37,4 @@ export function taskCard(title, date, prio){
     card.append(prioContainer);
     card.append(statusContainer);
     main.append(card);
-}
-
-export function applyColor(taskType, colors) {
-    return colors[taskType];
 }
