@@ -1,5 +1,7 @@
 import { matrixColors } from "../colors.js";
 const main = document.querySelector("main");
+const cardContainer = document.createElement("div");
+cardContainer.className = "card-container";
 
 export function taskCard(title, date, prio){
     const card = document.createElement("div");
@@ -36,5 +38,6 @@ export function taskCard(title, date, prio){
     card.append(dateContainer);
     card.append(prioContainer);
     card.append(statusContainer);
-    main.append(card);
+    cardContainer.append(card);
+    main.append(cardContainer);
 }

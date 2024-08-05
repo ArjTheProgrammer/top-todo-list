@@ -257,6 +257,9 @@ form > :last-child:hover {
 /*main*/
 main {
   grid-area: main;
+}
+
+.card-container {
   display: grid;
   grid-auto-rows: minmax(4rem, 4rem);
   gap: 20px;
