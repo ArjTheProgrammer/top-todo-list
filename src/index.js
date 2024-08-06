@@ -1,8 +1,12 @@
 import './style.css';    
 import { taskInput } from "./components/taskInputButton.js";
+import { displayCards } from "./components/cards.js";
+import { allTask } from './components/arrays.js';
 
-const dummyTitle = "Dummy 1";
-const dummyDate = "friyay";
-const dummyPrio = "do";
+const taskButton = document.querySelector(".task-aside");
+
+taskButton.addEventListener("click", () => {
+        displayCards("All Task", ...allTask);
+});
 
 taskInput();

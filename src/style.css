@@ -52,13 +52,14 @@ header {
   height: 20px;
   background-color: var(--neutral-color-300);
   padding: 10px 20px;
+  margin-bottom: 20px;
   box-shadow: 10px 10px 10px var(--neutral-color-500);
 }
 
 footer {
   grid-area: footer;
   justify-content: center;
-  background-color: var(--primary-color);
+  background-color: var(--neutral-color-400);
   padding: 3px 10px;
 }
 
@@ -74,7 +75,7 @@ aside {
   padding-top: 20px;
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-color);
+  background-color: var(--neutral-color-400);
   box-shadow: 1px 3px 5px var(--neutral-color-600);
 }
 aside > span {
@@ -94,7 +95,7 @@ aside > button {
   font-weight: 750;
   border: none;
   width: 100%;
-  background-color: var(--primary-color);
+  background-color: var(--neutral-color-400);
 }
 
 aside > button:hover {
@@ -265,6 +266,12 @@ main {
   gap: 20px;
   align-items: center;
   margin: 25px 40px;
+}
+
+main > .list-name {
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin: 10px 40px;
 }
 
 /*task card*/

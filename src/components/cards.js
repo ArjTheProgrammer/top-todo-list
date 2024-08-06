@@ -1,6 +1,8 @@
 import { matrixColors } from "../colors.js";
+
 const main = document.querySelector("main");
 const cardContainer = document.createElement("div");
+const listName = document.querySelector(".list-name");
 cardContainer.className = "card-container";
 
 export function taskCard(title, date, prio){
@@ -40,4 +42,12 @@ export function taskCard(title, date, prio){
     card.append(statusContainer);
     cardContainer.append(card);
     main.append(cardContainer);
+}
+
+export function displayCards(title, ...taskArray){
+    cardContainer.innerHTML = "";
+    listName.textContent = title;
+    for (let task of taskArray){
+        taskCard(task.getTitle(), task.getDate(), task.getPrio());
+    };
 }

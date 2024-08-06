@@ -1,6 +1,6 @@
 import { matrixColors } from "../colors.js";
 import { task } from "../classes/task.js";
-import { taskCard } from "./cards.js";
+import { displayCards } from "./cards.js";
 import { allTask } from "./arrays.js";
 
 const main = document.querySelector("main");
@@ -39,8 +39,7 @@ export function taskInputDialog(){
     form.setAttribute("method","dialog");
     taskTitle.setAttribute("required", ""); 
     taskTitle.setAttribute("maxlength", "64");
-    taskTitle.placeholder = "What's the task? (limited to 64 characters)";
-    taskDate.setAttribute("required", "");   
+    taskTitle.placeholder = "What's the task? (limited to 64 characters)";  
     taskDate.setAttribute("type","date");
     taskDescription.setAttribute("rows", 4);
     submitButton.setAttribute("type", "submit");
@@ -145,8 +144,8 @@ export function getPrio(urgent, important){
 function getInput(title, date, prio, desc){
     let addTask = new task(title, date, prio, desc);
     allTask.push(addTask);
-    taskCard(title, date, prio);
     console.table(allTask);
+    displayCards("All Task", ...allTask);
     clear();
 }
 
