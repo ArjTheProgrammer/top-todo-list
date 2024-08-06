@@ -1,7 +1,7 @@
 import { taskInputDialog } from "./taskInputDialog.js";
 
 export function taskInput(){
-    const main = document.querySelector("main");
+    const body = document.querySelector("body");
     const taskInputButton = document.createElement("button");
 
     taskInputButton.textContent = "+";
@@ -11,5 +11,5 @@ export function taskInput(){
         taskInputDialog();
     })
 
-    main.append(taskInputButton);
+    body.append(taskInputButton);
 }

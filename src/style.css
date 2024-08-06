@@ -140,7 +140,7 @@ aside > button > svg {
 
 /* task input button*/
 .taskInputButton {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 10px;
   margin: 20px;
@@ -258,6 +258,7 @@ form > :last-child:hover {
 /*main*/
 main {
   grid-area: main;
+  overflow-y: auto;
 }
 
 .card-container {
