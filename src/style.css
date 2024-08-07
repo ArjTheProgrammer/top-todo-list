@@ -162,7 +162,7 @@ aside > button > svg {
   background-color: rgba(0, 0, 0, 0.629);
 }
 
-dialog {
+.input-dialog {
   background-color: var(--primary-color-100);
   padding: 20px;
   border: none;
@@ -170,13 +170,13 @@ dialog {
   border-radius: 20px;
 }
 
-dialog > form {
+.input-dialog > form {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-dialog > form > :nth-child(2) {
+.input-dialog > form > :nth-child(2) {
   align-self: end;
   padding: 10px 17px;
   border-radius: 100px;
@@ -187,7 +187,7 @@ dialog > form > :nth-child(2) {
   border: 3px solid var(--neutral-color);
 }
 
-dialog > form > :nth-child(2):hover {
+.input-dialog > form > :nth-child(2):hover {
   background-color: var(--neutral-color-400);
 }
 

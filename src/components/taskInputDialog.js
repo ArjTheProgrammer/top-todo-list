@@ -5,6 +5,7 @@ import { allTask } from "./arrays.js";
 
 const main = document.querySelector("main");
 const dialog = document.createElement("dialog");
+dialog.className = "input-dialog";
 const form = document.createElement("form");   
 const formContainer = document.createElement("div");
 formContainer.className = "form-container";
