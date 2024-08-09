@@ -353,6 +353,7 @@ main > .list-name {
   height: 50%;
   width: 30%;
   border-radius: 15px;
+  border: none;
   background-color: var(--primary-color-200);
 }
 
@@ -375,4 +376,18 @@ main > .list-name {
   word-wrap: break-word;
   white-space: pre-wrap;
   overflow-wrap: break-word;
+}
+
+.view-dialog > p {
+  flex: 1;
+}
+
+.view-dialog > :last-child {
+  align-self: flex-end;
+  background-color: var(--secondary-color-300);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 100px;
 }

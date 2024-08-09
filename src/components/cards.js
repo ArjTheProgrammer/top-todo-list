@@ -1,11 +1,12 @@
 import { matrixColors } from "../colors.js";
+import { taskEditDialog } from "./taskInputDialog.js";
 
 const main = document.querySelector("main");
 const cardContainer = document.createElement("div");
 const listName = document.querySelector(".list-name");
 cardContainer.className = "card-container";
 
-export function taskCard(task){
+function taskCard(task){
     const card = document.createElement("div");
     const titleContainer = document.createElement("span");
     const dateContainer = document.createElement("span");
@@ -67,10 +68,13 @@ function viewCard(task){
     const prioContainer = document.createElement("span");
     const statusContainer = document.createElement("span");
     const descContainer = document.createElement("p");
+    const editButton = document.createElement("button");
 
     closeButton.textContent = "X";
+    editButton.textContent = "Edit";
+    editButton.className = "edit-button";
     titleContainer.innerHTML = "<span class='label-text'>Title: </span>" + task.getTitle();
-    dateContainer.innerHTML = "<span class='label-text'>Date: </span>" + task.getDate();
+    dateContainer.innerHTML = "<span class='label-text'>Date: </span>" + `${task.getDate() == "" ? "none" : task.getDate()}`;
     prioContainer.innerHTML = "<span class='label-text'>Priority: </span>" + task.getPrio();
     statusContainer.innerHTML = "<span class='label-text'>Status: </span>" + task.getStatus();
     descContainer.innerHTML = "<span class='label-text'>Description: </span>" + task.getDesc();
@@ -80,8 +84,15 @@ function viewCard(task){
         viewContainer.remove();
     });
 
+    editButton.addEventListener("click", () => {
+        viewContainer.close();
+        viewContainer.remove();
+        console.log("loop in edit");
+        taskEditDialog(task);
+    })
+
     viewContainer.className = "view-dialog";
-    viewContainer.append(closeButton, titleContainer, dateContainer, prioContainer, statusContainer, descContainer);
+    viewContainer.append(closeButton, titleContainer, dateContainer, prioContainer, statusContainer, descContainer, editButton);
     document.body.append(viewContainer);
     viewContainer.showModal();
 };

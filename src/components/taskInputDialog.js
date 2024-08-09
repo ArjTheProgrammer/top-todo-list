@@ -26,7 +26,6 @@ const importantCheckboxLabel = document.createElement("label");
 const matrix = document.createElement("div");
 matrix.className = "matrix-viewer";
 const taskDescription = document.createElement("textarea");
-const submitButton = document.createElement("input");
 
 const prioContents = [urgentCheckbox, urgentCheckboxLabel, importantCheckbox,  importantCheckboxLabel];
 
@@ -35,6 +34,7 @@ const inputs = [taskTitle, taskDate, prioContainer, taskDescription];
 const textContent = ["Title", "Due-date", "Priority", "Description"];
 
 export function taskInputDialog(){
+    cleanDialog();
     newTaskHeader.textContent = "New Task";
     closeButton.textContent = "X";
     form.setAttribute("method","dialog");
@@ -43,6 +43,7 @@ export function taskInputDialog(){
     taskTitle.placeholder = "What's the task? (limited to 64 characters)";  
     taskDate.setAttribute("type","date");
     taskDescription.setAttribute("rows", 4);
+    const submitButton = document.createElement("input");
     submitButton.setAttribute("type", "submit");
 
 //for prio
@@ -86,6 +87,16 @@ export function taskInputDialog(){
         formContainer.append(inputs[i]);
     }
 
+    submitButton.addEventListener("click", (e) => {
+        if (!taskTitle.value == ""){
+            getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
+            displayCards("All Task", ...allTask);
+            dialog.close();
+            clear();
+            e.preventDefault();
+        }
+    });
+
     form.append(newTaskHeader);
     form.append(closeButton);
     form.append(formContainer);
@@ -99,15 +110,6 @@ closeButton.addEventListener("click", (e) => {
     e.preventDefault();
     clear();
     dialog.close();
-});
-
-submitButton.addEventListener("click", (e) => {
-    if (!taskTitle.value == ""){
-        getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
-        dialog.close();
-        clear();
-        e.preventDefault();
-    }
 });
 
 function updateMatrix(prio){
@@ -144,9 +146,8 @@ export function getPrio(urgent, important){
 
 function getInput(title, date, prio, desc){
     let addTask = new task(title, date, prio, desc);
-    allTask.push(addTask);
+    allTask.push(addTask); 
     console.table(allTask);
-    displayCards("All Task", ...allTask);
     clear();
 }
 
@@ -157,4 +158,101 @@ function clear(){
     prioContents.forEach(checkbox => {
         checkbox.checked = false;
     })
+}
+
+//for edit
+
+export function taskEditDialog(task){
+    cleanDialog();
+    newTaskHeader.textContent = "Edit Task";
+    closeButton.textContent = "X";
+    form.setAttribute("method","dialog");
+    taskTitle.setAttribute("maxlength", "64");
+    taskTitle.placeholder = "What's the task? (limited to 64 characters)";  
+    taskDate.setAttribute("type","date");
+    taskDescription.setAttribute("rows", 4);
+    const editButton = document.createElement("button");
+    editButton.textContent = "Update";
+
+//for prio
+    
+    for (let prioContent of prioContents){
+        if(prioContent.tagName == "INPUT"){
+            prioContent.setAttribute("type", "checkbox");
+            if (prioContent == urgentCheckbox){
+                prioContent.id = 'urgentCheckbox';
+                urgentCheckboxLabel.setAttribute("for", "urgentCheckbox");
+                urgentCheckboxLabel.textContent = "Urgent";
+            }
+            else if (prioContent == importantCheckbox) {
+                prioContent.id = 'importantCheckbox';
+                importantCheckboxLabel.setAttribute("for", "importantCheckbox");
+                importantCheckboxLabel.textContent = "Important";
+            }
+        }
+        prioContainer.append(prioContent);
+    };
+    
+    for (let i = 0; i <= prioContents.length - 1; i++){ 
+        prioContents[i].addEventListener("click", () => {
+            updateMatrix(getPrio(urgentCheckbox, importantCheckbox));
+        });
+    }
+
+    updateMatrix(getPrio(urgentCheckbox, importantCheckbox));
+    prioContainer.append(matrix);
+   
+    //for inputs
+    
+    for(let i = 0; i < labels.length; i++){
+        if(i !== 2){
+            inputs[i].id = `${textContent[i]}`;
+            inputs[i].name = `${textContent[i]}`;
+        }
+        labels[i].className = "label";
+        labels[i].textContent = textContent[i];
+        formContainer.append(labels[i]);
+        formContainer.append(inputs[i]);
+    }
+
+    editButton.addEventListener("click", (e) => {
+        setInput(task);
+        dialog.close();
+        e.preventDefault();
+    });
+
+    form.append(newTaskHeader);
+    form.append(closeButton);
+    form.append(formContainer);
+    form.append(editButton);
+    dialog.append(form);
+    main.append(dialog);
+    dialog.showModal();
+}
+
+function setInput(task){
+    if (taskTitle.value !== ""){
+        task.setTitle(taskTitle.value);
+        console.log("title updated")
+    }
+
+    if (taskDate.value !== ""){
+        task.setDate(taskDate.value);
+    }
+
+    task.setPrio(getPrio(urgentCheckbox, importantCheckbox));
+
+    if (taskDescription.value !== ""){
+        task.setDesc(taskDescription.value);
+    }
+
+    console.table(allTask);
+    displayCards("All Task", ...allTask);
+    console.log("loop in update");
+    clear();
+}
+
+function cleanDialog(){
+    dialog.innerHTML = "";
+    form.innerHTML = "";
 }
