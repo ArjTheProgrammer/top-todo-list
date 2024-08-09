@@ -5,7 +5,7 @@ const cardContainer = document.createElement("div");
 const listName = document.querySelector(".list-name");
 cardContainer.className = "card-container";
 
-export function taskCard(title, date, prio){
+export function taskCard(task){
     const card = document.createElement("div");
     const titleContainer = document.createElement("span");
     const dateContainer = document.createElement("span");
@@ -16,22 +16,27 @@ export function taskCard(title, date, prio){
     card.className = "task-card";
     statusCheckbox.setAttribute("type", "checkbox");
 
-    titleContainer.textContent = title;
-    dateContainer.textContent =  date == "" ? "none" : date;
-    prioContainer.textContent = prio;
-    statusLabel.textContent = "ongoing";
+    titleContainer.textContent = task.getTitle();
+    dateContainer.textContent =  task.getDate() == "" ? "none" : task.getDate();
+    prioContainer.textContent = task.getPrio();
+    statusLabel.textContent = task.getStatus();
 
-    prioContainer.style.borderLeft = `10px solid ${matrixColors[prio]}`;
+    prioContainer.style.borderLeft = `10px solid ${matrixColors[task.getPrio()]}`;
 
     
     statusCheckbox.addEventListener("click", () => {
-        statusLabel.textContent = statusCheckbox.checked ? "done" : "ongoing";
-        if (statusLabel.textContent == "done"){
+        if (statusCheckbox.checked){
+            task.setStatus("done");
             statusLabel.style.fontWeight = "700";
+            console.log(task);
         }
         else {
+            task.setStatus("ongoing");
             statusLabel.style.fontWeight = "400";
+            console.log(task);
         }
+
+        statusLabel.textContent = task.getStatus();
     })
 
     statusContainer.append(statusLabel);
@@ -48,6 +53,6 @@ export function displayCards(title, ...taskArray){
     cardContainer.innerHTML = "";
     listName.textContent = title;
     for (let task of taskArray){
-        taskCard(task.getTitle(), task.getDate(), task.getPrio());
+        taskCard(task);
     };
 }
