@@ -4,6 +4,7 @@ export class task {
         this.date = taskDate;
         this.prio = taskPrio;
         this.desc = taskDesc;
+        this.status = "ongoing";
     }
 
     getTitle(){
@@ -36,5 +37,9 @@ export class task {
 
     setDesc(newDesc){
         this.desc = newDesc;
+    }
+
+    setStatus(newStatus){
+        this.status = newStatus;
     }
 }
