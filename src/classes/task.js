@@ -23,6 +23,10 @@ export class task {
         return this.desc;
     }
 
+    getStatus(){
+        return this.status;
+    }
+
     setTitle(newTitle){
         this.title = newTitle;
     }
