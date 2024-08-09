@@ -286,7 +286,6 @@ main > .list-name {
   box-shadow: 4px 4px 4px var(--neutral-color-700);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: max(97%, 730px);
-  cursor: pointer;
 }
 
 .task-card:hover {
@@ -306,6 +305,7 @@ main > .list-name {
   text-align: start;
   width: var(--card-title-width);
   padding-left: 10px;
+  cursor: pointer;
 }
 
 .task-card > span:nth-of-type(2) {
@@ -344,4 +344,35 @@ main > .list-name {
 .task-card > span:nth-child(3) {
   padding: 0px 10px;
   width: min(8%);
+}
+
+.view-dialog {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  height: 50%;
+  width: 30%;
+  border-radius: 15px;
+  background-color: var(--primary-color-200);
+}
+
+.view-dialog > :first-child {
+  align-self: self-end;
+  font-size: 1.3rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background-color: var(--secondary-color-400);
+}
+
+.label-text {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.view-dialog > span,
+.view-dialog > p {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }

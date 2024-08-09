@@ -28,16 +28,18 @@ export function taskCard(task){
         if (statusCheckbox.checked){
             task.setStatus("done");
             statusLabel.style.fontWeight = "700";
-            console.log(task);
         }
         else {
             task.setStatus("ongoing");
             statusLabel.style.fontWeight = "400";
-            console.log(task);
         }
 
         statusLabel.textContent = task.getStatus();
-    })
+    });
+
+    titleContainer.addEventListener("click", () => {
+        viewCard(task);
+    });
 
     statusContainer.append(statusLabel);
     statusContainer.append(statusCheckbox);
@@ -56,3 +58,30 @@ export function displayCards(title, ...taskArray){
         taskCard(task);
     };
 }
+
+function viewCard(task){
+    const viewContainer = document.createElement("dialog");
+    const closeButton = document.createElement("button");
+    const titleContainer = document.createElement("span");
+    const dateContainer = document.createElement("span");
+    const prioContainer = document.createElement("span");
+    const statusContainer = document.createElement("span");
+    const descContainer = document.createElement("p");
+
+    closeButton.textContent = "X";
+    titleContainer.innerHTML = "<span class='label-text'>Title: </span>" + task.getTitle();
+    dateContainer.innerHTML = "<span class='label-text'>Date: </span>" + task.getDate();
+    prioContainer.innerHTML = "<span class='label-text'>Priority: </span>" + task.getPrio();
+    statusContainer.innerHTML = "<span class='label-text'>Status: </span>" + task.getStatus();
+    descContainer.innerHTML = "<span class='label-text'>Description: </span>" + task.getDesc();
+    
+    closeButton.addEventListener("click", () => {
+        viewContainer.close();
+        viewContainer.remove();
+    });
+
+    viewContainer.className = "view-dialog";
+    viewContainer.append(closeButton, titleContainer, dateContainer, prioContainer, statusContainer, descContainer);
+    document.body.append(viewContainer);
+    viewContainer.showModal();
+};
