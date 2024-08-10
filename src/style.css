@@ -347,6 +347,22 @@ main > .list-name {
   width: min(8%);
 }
 
+.task-card > .card-delete-button {
+  padding: 0px;
+  background: none;
+  border: none;
+}
+
+.task-card > .card-delete-button > svg {
+  height: 25px;
+  width: auto;
+  padding: 3px 5px 0px 5px;
+}
+
+.task-card > .card-delete-button:hover > svg:hover {
+  stroke: red;
+}
+
 .view-dialog {
   display: flex;
   flex-direction: column;

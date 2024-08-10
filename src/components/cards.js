@@ -14,6 +14,17 @@ function taskCard(task){
     const statusContainer = document.createElement("div");
     const statusLabel = document.createElement("span");
     const statusCheckbox = document.createElement("input");
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "card-delete-button";
+    //just svg
+    deleteButton.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"></polyline>
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m6 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
+    </svg>
+    `;
+    
+    //end of svg
     card.className = "task-card";
     statusCheckbox.setAttribute("type", "checkbox");
 
@@ -49,10 +60,7 @@ function taskCard(task){
 
     statusContainer.append(statusLabel);
     statusContainer.append(statusCheckbox);
-    card.append(titleContainer);
-    card.append(dateContainer);
-    card.append(prioContainer);
-    card.append(statusContainer);
+    card.append(titleContainer, dateContainer, prioContainer, statusContainer, deleteButton);
     cardContainer.append(card);
     main.append(cardContainer);
 }
