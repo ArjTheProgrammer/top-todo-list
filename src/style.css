@@ -267,6 +267,7 @@ main {
   gap: 20px;
   align-items: center;
   margin: 25px 40px;
+  padding-bottom: 100px;
 }
 
 main > .list-name {
