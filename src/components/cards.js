@@ -22,6 +22,12 @@ function taskCard(task){
     prioContainer.textContent = task.getPrio();
     statusLabel.textContent = task.getStatus();
 
+    if (task.getStatus() == "done"){
+        statusCheckbox.checked = true;
+        statusLabel.style.fontWeight = "700";
+        statusLabel.style.border = "none";
+    }
+
     prioContainer.style.borderLeft = `10px solid ${matrixColors[task.getPrio()]}`;
 
     
