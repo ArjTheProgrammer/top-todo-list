@@ -90,7 +90,7 @@ export function taskInputDialog(){
     submitButton.addEventListener("click", (e) => {
         if (!taskTitle.value == ""){
             getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
-            displayCards("All Task", ...allTask);
+            displayCards("All Task", allTask);
             dialog.close();
             clear();
             e.preventDefault();
@@ -247,7 +247,7 @@ function setInput(task){
     }
 
     console.table(allTask);
-    displayCards("All Task", ...allTask);
+    displayCards("All Task", allTask);
     console.log("loop in update");
     clear();
 }

@@ -6,7 +6,7 @@ const cardContainer = document.createElement("div");
 const listName = document.querySelector(".list-name");
 cardContainer.className = "card-container";
 
-function taskCard(task){
+function taskCard(task, taskArray){
     const card = document.createElement("div");
     const titleContainer = document.createElement("span");
     const dateContainer = document.createElement("span");
@@ -23,7 +23,6 @@ function taskCard(task){
       <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m6 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
     </svg>
     `;
-    
     //end of svg
     card.className = "task-card";
     statusCheckbox.setAttribute("type", "checkbox");
@@ -58,6 +57,12 @@ function taskCard(task){
         viewCard(task);
     });
 
+    deleteButton.addEventListener("click", () => {
+        taskArray.splice(taskArray.indexOf(task), 1);
+        console.table(taskArray);
+        card.remove();
+    })
+
     statusContainer.append(statusLabel);
     statusContainer.append(statusCheckbox);
     card.append(titleContainer, dateContainer, prioContainer, statusContainer, deleteButton);
@@ -65,11 +70,11 @@ function taskCard(task){
     main.append(cardContainer);
 }
 
-export function displayCards(title, ...taskArray){
+export function displayCards(title, taskArray){
     cardContainer.innerHTML = "";
     listName.textContent = title;
     for (let task of taskArray){
-        taskCard(task);
+        taskCard(task, taskArray);
     };
 }
 
@@ -100,9 +105,8 @@ function viewCard(task){
     editButton.addEventListener("click", () => {
         viewContainer.close();
         viewContainer.remove();
-        console.log("loop in edit");
         taskEditDialog(task);
-    })
+    });
 
     viewContainer.className = "view-dialog";
     viewContainer.append(closeButton, titleContainer, dateContainer, prioContainer, statusContainer, descContainer, editButton);
