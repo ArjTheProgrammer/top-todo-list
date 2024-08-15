@@ -87,6 +87,13 @@ export function taskInputDialog(){
         formContainer.append(inputs[i]);
     }
 
+    form.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            submitButton.click();
+        }
+    });
+
     submitButton.addEventListener("click", (e) => {
         if (!taskTitle.value == ""){
             getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);

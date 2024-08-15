@@ -359,8 +359,8 @@ main > .list-name {
   padding: 3px 5px 0px 5px;
 }
 
-.task-card > .card-delete-button:hover > svg:hover {
-  stroke: red;
+.task-card > .card-delete-button > svg:hover .ci-primary {
+  fill: red;
 }
 
 .view-dialog {

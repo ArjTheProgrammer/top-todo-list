@@ -18,10 +18,7 @@ function taskCard(task, taskArray){
     deleteButton.className = "card-delete-button";
     //just svg
     deleteButton.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="3 6 5 6 21 6"></polyline>
-      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m6 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
-    </svg>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="var(--ci-primary-color, #000000)" d="M96,472a23.82,23.82,0,0,0,23.579,24H392.421A23.82,23.82,0,0,0,416,472V152H96Zm32-288H384V464H128Z" class="ci-primary"></path> <rect width="32" height="200" x="168" y="216" fill="var(--ci-primary-color, #000000)" class="ci-primary"></rect> <rect width="32" height="200" x="240" y="216" fill="var(--ci-primary-color, #000000)" class="ci-primary"></rect> <rect width="32" height="200" x="312" y="216" fill="var(--ci-primary-color, #000000)" class="ci-primary"></rect> <path fill="var(--ci-primary-color, #000000)" d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z" class="ci-primary"></path> </g></svg>
     `;
     //end of svg
     card.className = "task-card";
