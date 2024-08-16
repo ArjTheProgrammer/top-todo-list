@@ -1,13 +1,14 @@
 export class project{
     constructor(projectTitle) {
-        this.name = projectTitle
+        this.title = projectTitle;
+        this.array = [];
     }
 
     getName(){
-        return this.name;
+        return this.title;
     }
 
     setName(newprojectTitle){
-        this.name = newprojectTitle;
+        this.title = newprojectTitle;
     }
 }

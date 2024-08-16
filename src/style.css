@@ -138,6 +138,36 @@ aside > button > svg {
   color: var(--neutral-color-150);
 }
 
+.project-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  width: 75%;
+  align-self: flex-end;
+}
+
+.project-container > div {
+  display: flex;
+}
+
+.project-container > span {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.project-container > span:hover {
+  color: var(--neutral-color-600);
+}
+
+.project-container > div > input {
+  font-size: 1.2rem;
+  width: 80%;
+}
+
+.project-container > div > button {
+  font-weight: 700;
+  width: 13%;
+}
 /* task input button*/
 .taskInputButton {
   position: fixed;
@@ -168,6 +198,7 @@ aside > button > svg {
   border: none;
   box-shadow: 3px 10px 10px var(--neutral-color-700);
   border-radius: 20px;
+  font-size: 1.1rem;
 }
 
 .input-dialog > form {
