@@ -28,6 +28,26 @@ button:hover {
   cursor: pointer;
 }
 
+/* Custom scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: none; /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color); /* Color of the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners for the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(
+    --primary-color-400
+  ); /* Color of the scrollbar thumb on hover */
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -77,6 +97,7 @@ aside {
   flex-direction: column;
   background-color: var(--neutral-color-400);
   box-shadow: 1px 3px 5px var(--neutral-color-600);
+  max-width: 100%;
 }
 aside > span {
   font-size: min(2rem, 2.5rem);
@@ -110,8 +131,7 @@ aside > button > svg {
 .project-aside {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  position: relative;
+  height: 60%;
 }
 
 .project-aside > h1 {
@@ -126,12 +146,11 @@ aside > button > svg {
   background: none;
   border: none;
   display: flex;
-  padding: 20px;
+  padding: 20px 0px 10px 20px;
   font-size: 1.15rem;
-  position: absolute;
-  bottom: 0;
   width: 100%;
   font-weight: 700;
+  align-self: flex-end;
 }
 
 .project-aside > .project-add:hover {
@@ -143,7 +162,11 @@ aside > button > svg {
   flex-direction: column;
   padding: 10px 20px;
   width: 75%;
+  flex-grow: 1;
   align-self: flex-end;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .project-container > div {
@@ -153,10 +176,13 @@ aside > button > svg {
 .project-container > span {
   font-size: 1.2rem;
   font-weight: 600;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
 }
 
 .project-container > span:hover {
   color: var(--neutral-color-600);
+  cursor: pointer;
 }
 
 .project-container > div > input {
