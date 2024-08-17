@@ -1,3 +1,6 @@
+import { Project } from "../classes/project.js";
+import { projects } from "./arrays.js";
+
 const projectContainer = document.querySelector(".project-container");
 const projectButton = document.querySelector(".project-add");
 
@@ -12,7 +15,10 @@ export function projectInput(){
 
     projectTitleInput.addEventListener("keypress", (event) => {
         if (event.key === 'Enter'){
-            projectTitle.textContent = `${projectTitleInput.value}`;
+            const project = new Project(projectTitleInput.value);
+            projectTitle.textContent = project.getTitle();
+            projects.push(project);
+            console.table(projects);
             projectContainer.append(projectTitle);
             projectInputCon.remove();
             projectButton.disabled = false;
@@ -22,9 +28,10 @@ export function projectInput(){
     closeInput.addEventListener("click", () => {
         projectInputCon.remove();
         projectButton.disabled = false;
-    })
+    });
 
-    projectButton.disabled = true;
     projectInputCon.append(projectTitleInput, closeInput);
     projectContainer.append(projectInputCon);
+    projectButton.disabled = true;
+    projectTitleInput.focus();
 }
