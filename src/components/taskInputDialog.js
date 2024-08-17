@@ -195,6 +195,7 @@ function clear(){
 
 export function taskEditDialog(task){
     cleanDialog();
+    getTaskValue(task);
     newTaskHeader.textContent = "Edit Task";
     closeButton.textContent = "X";
     form.setAttribute("method","dialog");
@@ -278,6 +279,29 @@ function setInput(task){
 
     displayCards("All Task", allTask.array);
     clear();
+}
+
+function getTaskValue(task){
+    console.log(task.getTitle());
+    taskTitle.value = task.getTitle();
+    taskDate.value = task.getDate();
+    if (task.getPrio() == "do"){
+        urgentCheckbox.checked = true;
+        importantCheckbox.checked = true;
+    }        
+    else if (task.getPrio() == "decide"){
+        urgentCheckbox.checked = false;
+        importantCheckbox.checked = true;
+    }
+    else if (task.getPrio() == "delegate"){
+        urgentCheckbox.checked = true;
+        importantCheckbox.checked = false;
+    }
+    else {
+        urgentCheckbox.checked = false;
+        importantCheckbox.checked = false;
+    }
+    taskDescription.value = task.getDesc();
 }
 
 function cleanDialog(){
