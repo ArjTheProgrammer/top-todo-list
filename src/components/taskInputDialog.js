@@ -1,7 +1,7 @@
 import { matrixColors } from "../colors.js";
 import { Task } from "../classes/task.js";
 import { displayCards } from "./cards.js";
-import { allTask } from "./arrays.js";
+import { allTask, projects } from "./arrays.js";
 
 const main = document.querySelector("main");
 const dialog = document.createElement("dialog");
@@ -14,6 +14,7 @@ const taskLabel = document.createElement("label");
 const taskDateLabel = document.createElement("label");
 const taskPrioLabel = document.createElement("div");
 const taskDescriptionLabel = document.createElement("label");
+const taskProjLabel = document.createElement("label");
 const closeButton = document.createElement("button");
 const taskTitle = document.createElement("input");
 const taskDate = document.createElement("input");
@@ -26,12 +27,13 @@ const importantCheckboxLabel = document.createElement("label");
 const matrix = document.createElement("div");
 matrix.className = "matrix-viewer";
 const taskDescription = document.createElement("textarea");
+const taskProj = document.createElement("select");
 
 const prioContents = [urgentCheckbox, urgentCheckboxLabel, importantCheckbox,  importantCheckboxLabel];
 
-const labels = [taskLabel, taskDateLabel, taskPrioLabel, taskDescriptionLabel];
-const inputs = [taskTitle, taskDate, prioContainer, taskDescription];
-const textContent = ["Title", "Due-date", "Priority", "Description"];
+const labels = [taskLabel, taskDateLabel, taskPrioLabel, taskDescriptionLabel, taskProjLabel];
+const inputs = [taskTitle, taskDate, prioContainer, taskDescription, taskProj];
+const textContent = ["Title", "Due-date", "Priority", "Description", "Project"];
 
 export function taskInputDialog(){
     cleanDialog();
@@ -73,6 +75,19 @@ export function taskInputDialog(){
 
     updateMatrix(getPrio(urgentCheckbox, importantCheckbox));
     prioContainer.append(matrix);
+
+    //for select
+    const taskSelect = document.createElement("option");
+    taskSelect.value = allTask.title;
+    taskSelect.textContent = allTask.title;
+    taskProj.append(taskSelect);
+    taskProj.append(taskSelect);
+    for (let project of projects){
+        const select = document.createElement("option");
+        select.value = project.getTitle();
+        select.textContent = project.getTitle();
+        taskProj.append(select);
+    }
    
     //for inputs
     
@@ -97,7 +112,7 @@ export function taskInputDialog(){
     submitButton.addEventListener("click", (e) => {
         if (!taskTitle.value == ""){
             getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
-            displayCards("All Task", allTask);
+            displayCards("All Task", allTask.array);
             dialog.close();
             clear();
             e.preventDefault();
@@ -153,8 +168,7 @@ export function getPrio(urgent, important){
 
 function getInput(title, date, prio, desc){
     let addTask = new Task(title, date, prio, desc);
-    allTask.push(addTask); 
-    console.table(allTask);
+    allTask.array.push(addTask);
     clear();
 }
 
@@ -240,7 +254,6 @@ export function taskEditDialog(task){
 function setInput(task){
     if (taskTitle.value !== ""){
         task.setTitle(taskTitle.value);
-        console.log("title updated")
     }
 
     if (taskDate.value !== ""){
@@ -253,13 +266,12 @@ function setInput(task){
         task.setDesc(taskDescription.value);
     }
 
-    console.table(allTask);
-    displayCards("All Task", allTask);
-    console.log("loop in update");
+    displayCards("All Task", allTask.array);
     clear();
 }
 
 function cleanDialog(){
     dialog.innerHTML = "";
     form.innerHTML = "";
+    taskProj.innerHTML = "";
 }

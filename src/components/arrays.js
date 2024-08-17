@@ -1,3 +1,6 @@
-export let allTask = [];
+export let allTask = {
+    title: "All Task",
+    array: []
+};
 
 export let projects = [];

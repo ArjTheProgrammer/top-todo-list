@@ -22,7 +22,6 @@ export function projectInput(){
                 projects.push(project);
                 console.table(projects);
                 projectContainer.append(projectTitle);
-                displayCards(project.getTitle(), project.array);
 
                 projectTitle.addEventListener("click", () => {
                     displayCards(project.getTitle(), project.array);

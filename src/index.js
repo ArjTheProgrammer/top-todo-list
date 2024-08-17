@@ -8,7 +8,7 @@ const taskButton = document.querySelector(".task-aside");
 const projectButton = document.querySelector(".project-add");
 
 taskButton.addEventListener("click", () => {
-        displayCards("All Task", allTask);
+        displayCards("All Task", allTask.array);
 });
 
 projectButton.addEventListener("click", () => {
