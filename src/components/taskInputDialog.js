@@ -77,6 +77,7 @@ export function taskInputDialog(){
     prioContainer.append(matrix);
 
     //for select
+    
     const taskSelect = document.createElement("option");
     taskSelect.value = allTask.title;
     taskSelect.textContent = allTask.title;
@@ -111,7 +112,7 @@ export function taskInputDialog(){
 
     submitButton.addEventListener("click", (e) => {
         if (!taskTitle.value == ""){
-            getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value);
+            getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value, taskProj.value);
             displayCards("All Task", allTask.array);
             dialog.close();
             clear();
@@ -166,8 +167,17 @@ export function getPrio(urgent, important){
     return "delete";
 }
 
-function getInput(title, date, prio, desc){
+function getInput(title, date, prio, desc, proj){
     let addTask = new Task(title, date, prio, desc);
+
+    if (proj !== allTask.title){
+        for (let project of projects){
+            if (project.getTitle() == proj){
+                project.array.push(addTask);
+            }
+        }
+    }
+
     allTask.array.push(addTask);
     clear();
 }

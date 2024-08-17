@@ -1,5 +1,6 @@
 import { matrixColors } from "../colors.js";
 import { taskEditDialog } from "./taskInputDialog.js";
+import { allTask } from "./arrays.js";
 
 const main = document.querySelector("main");
 const cardContainer = document.createElement("div");
@@ -56,6 +57,7 @@ function taskCard(task, taskArray){
 
     deleteButton.addEventListener("click", () => {
         taskArray.splice(taskArray.indexOf(task), 1);
+        allTask.array.splice(allTask.array.indexOf(task), 1);
         console.table(taskArray);
         card.remove();
     })

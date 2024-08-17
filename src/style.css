@@ -256,7 +256,8 @@ form > .form-container {
 }
 
 form > .form-container > input,
-form > .form-container > textArea {
+form > .form-container > textArea,
+form > .form-container > select {
   padding: 10px 20px;
   font-size: 1.1rem;
 }
