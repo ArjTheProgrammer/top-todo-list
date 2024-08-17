@@ -1,11 +1,18 @@
 import { matrixColors } from "../colors.js";
 import { taskEditDialog } from "./taskInputDialog.js";
-import { allTask } from "./arrays.js";
+import { allTask, projects } from "./arrays.js";
 
 const main = document.querySelector("main");
 const cardContainer = document.createElement("div");
 const listName = document.querySelector(".list-name");
 cardContainer.className = "card-container";
+
+export let currentDisplay = allTask.title;
+
+export function setCurrentDisplay(projTitle){
+    currentDisplay = projTitle;
+    console.log(`current display: ${currentDisplay}`);
+}
 
 function taskCard(task, taskArray){
     const card = document.createElement("div");
@@ -75,6 +82,19 @@ export function displayCards(title, taskArray){
     for (let task of taskArray){
         taskCard(task, taskArray);
     };
+}
+
+export function updateDisplayCards(projTitle){
+    if (currentDisplay !== allTask.title){
+        for (let project of projects){
+            if (project.getTitle() == projTitle){
+                displayCards(project.getTitle(), project.array);
+            }
+        }
+    }
+    else {
+        displayCards(allTask.title, allTask.array);
+    }
 }
 
 function viewCard(task){

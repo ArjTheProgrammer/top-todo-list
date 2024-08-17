@@ -1,6 +1,6 @@
 import { Project } from "../classes/project.js";
 import { projects } from "./arrays.js";
-import { displayCards } from "./cards.js";
+import { displayCards, setCurrentDisplay } from "./cards.js";
 
 const projectContainer = document.querySelector(".project-container");
 const projectButton = document.querySelector(".project-add");
@@ -24,9 +24,9 @@ export function projectInput(){
                 projectContainer.append(projectTitle);
 
                 projectTitle.addEventListener("click", () => {
+                    setCurrentDisplay(project.getTitle());
                     displayCards(project.getTitle(), project.array);
                 })
-
                 projectInputCon.remove();
                 projectButton.disabled = false;
             }

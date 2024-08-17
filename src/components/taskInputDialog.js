@@ -1,6 +1,6 @@
 import { matrixColors } from "../colors.js";
 import { Task } from "../classes/task.js";
-import { displayCards } from "./cards.js";
+import { updateDisplayCards, currentDisplay } from "./cards.js";
 import { allTask, projects } from "./arrays.js";
 
 const main = document.querySelector("main");
@@ -77,17 +77,19 @@ export function taskInputDialog(){
     prioContainer.append(matrix);
 
     //for select
-    
     const taskSelect = document.createElement("option");
     taskSelect.value = allTask.title;
     taskSelect.textContent = allTask.title;
-    taskProj.append(taskSelect);
+    taskSelect.setAttribute("selected", "");
     taskProj.append(taskSelect);
     for (let project of projects){
         const select = document.createElement("option");
         select.value = project.getTitle();
         select.textContent = project.getTitle();
         taskProj.append(select);
+        if (currentDisplay == project.title){
+            select.setAttribute("selected", "");
+        }
     }
    
     //for inputs
@@ -111,12 +113,11 @@ export function taskInputDialog(){
     });
 
     submitButton.addEventListener("click", (e) => {
-        if (!taskTitle.value == ""){
+        e.preventDefault();
+        if (taskTitle.value !== ""){
             getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value, taskProj.value);
-            displayCards("All Task", allTask.array);
             dialog.close();
             clear();
-            e.preventDefault();
         }
     });
 
@@ -177,8 +178,8 @@ function getInput(title, date, prio, desc, proj){
             }
         }
     }
-
     allTask.array.push(addTask);
+    updateDisplayCards(proj);
     clear();
 }
 
@@ -266,18 +267,9 @@ function setInput(task){
     if (taskTitle.value !== ""){
         task.setTitle(taskTitle.value);
     }
-
-    if (taskDate.value !== ""){
-        task.setDate(taskDate.value);
-    }
-
+    task.setDate(taskDate.value);
     task.setPrio(getPrio(urgentCheckbox, importantCheckbox));
-
-    if (taskDescription.value !== ""){
-        task.setDesc(taskDescription.value);
-    }
-
-    displayCards("All Task", allTask.array);
+    task.setDesc(taskDescription.value);
     clear();
 }
 
