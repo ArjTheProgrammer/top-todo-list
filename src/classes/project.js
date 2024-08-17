@@ -1,14 +1,14 @@
-export class project{
+export class Project{
     constructor(projectTitle) {
         this.title = projectTitle;
         this.array = [];
     }
 
-    getName(){
+    getTitle(){
         return this.title;
     }
 
-    setName(newprojectTitle){
+    setTitle(newprojectTitle){
         this.title = newprojectTitle;
     }
 }

@@ -1,5 +1,5 @@
 import { matrixColors } from "../colors.js";
-import { task } from "../classes/task.js";
+import { Task } from "../classes/task.js";
 import { displayCards } from "./cards.js";
 import { allTask } from "./arrays.js";
 
@@ -152,7 +152,7 @@ export function getPrio(urgent, important){
 }
 
 function getInput(title, date, prio, desc){
-    let addTask = new task(title, date, prio, desc);
+    let addTask = new Task(title, date, prio, desc);
     allTask.push(addTask); 
     console.table(allTask);
     clear();

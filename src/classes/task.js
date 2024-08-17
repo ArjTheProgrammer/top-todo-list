@@ -1,4 +1,4 @@
-export class task {
+export class Task {
     constructor(taskTitle, taskDate, taskPrio, taskDesc){
         this.title = taskTitle;
         this.date = taskDate;
