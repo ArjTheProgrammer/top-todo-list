@@ -19,7 +19,7 @@
   --neutral-color-100: #ffffff;
   --neutral-color-50: #ffffff;
   --card-title-width: min(20%);
-  --card-date-width: max(100px);
+  --card-date-width: max(160px);
   --card-prio-width: min(8%);
 }
 
@@ -369,7 +369,7 @@ main > .list-name {
 
 .task-card > span:nth-of-type(2) {
   width: var(--card-date-width);
-  text-align: center;
+  text-align: start;
 }
 
 .task-card > div {

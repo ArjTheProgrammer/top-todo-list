@@ -1,6 +1,8 @@
 import { matrixColors } from "../colors.js";
 import { taskEditDialog } from "./taskInputDialog.js";
 import { allTask, projects } from "./arrays.js";
+import { isToday, isTomorrow, isYesterday, differenceInDays, differenceInWeeks, differenceInYears, isBefore, startOfDay, format } from 'date-fns';
+
 
 const main = document.querySelector("main");
 const cardContainer = document.createElement("div");
@@ -33,7 +35,7 @@ function taskCard(task, taskArray){
     statusCheckbox.setAttribute("type", "checkbox");
 
     titleContainer.textContent = task.getTitle();
-    dateContainer.textContent =  task.getDate() == "" ? "none" : task.getDate();
+    dateContainer.textContent =  checkDueDate(task.getDate());
     prioContainer.textContent = task.getPrio();
     statusLabel.textContent = task.getStatus();
 
@@ -111,7 +113,7 @@ function viewCard(task){
     editButton.textContent = "Edit";
     editButton.className = "edit-button";
     titleContainer.innerHTML = "<span class='label-text'>Title: </span>" + task.getTitle();
-    dateContainer.innerHTML = "<span class='label-text'>Date: </span>" + `${task.getDate() == "" ? "none" : task.getDate()}`;
+    dateContainer.innerHTML = "<span class='label-text'>Date: </span>" + `${checkDueDate(task.getDate())}`;
     prioContainer.innerHTML = "<span class='label-text'>Priority: </span>" + task.getPrio();
     statusContainer.innerHTML = "<span class='label-text'>Status: </span>" + task.getStatus();
     descContainer.innerHTML = "<span class='label-text'>Description: </span>" + task.getDesc();
@@ -132,3 +134,34 @@ function viewCard(task){
     document.body.append(viewContainer);
     viewContainer.showModal();
 };
+
+function checkDueDate(date){
+    const dueDate = new Date(date);
+    const today = new Date();
+
+    if (isToday(dueDate)) {
+        return "Today";
+      } else if (isTomorrow(dueDate)) {
+        return "Tomorrow";
+      } else if (isYesterday(dueDate)) {
+        return "Yesterday";
+      } else if (isBefore(dueDate, startOfDay(today))) {
+        const daysDifference = differenceInDays(today, dueDate);
+        const weeksDifference = differenceInWeeks(today, dueDate);
+        const yearsDifference = differenceInYears(today, dueDate);
+      
+        if (daysDifference < 7) {
+          return `due ${daysDifference} days ago`;
+        } else if (daysDifference < 365) {
+          return `due ${weeksDifference} weeks ago`;
+        } else {
+          return `due ${yearsDifference} years ago`;
+        }
+      } else if (date == "") {
+        return 'None';
+      }
+
+      else {
+        return format(new Date(date), "MM/dd/yyyy");
+      }
+}
