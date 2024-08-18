@@ -114,10 +114,12 @@ export function taskInputDialog(){
 
     submitButton.addEventListener("click", (e) => {
         e.preventDefault();
-        if (taskTitle.value !== ""){
+        if (taskTitle.checkValidity()){
             getInput(taskTitle.value, taskDate.value, getPrio(urgentCheckbox, importantCheckbox), taskDescription.value, taskProj.value);
             dialog.close();
             clear();
+        } else {
+            taskTitle.reportValidity();
         }
     });
 
