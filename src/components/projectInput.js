@@ -18,15 +18,35 @@ export function projectInput(){
         if (event.key === 'Enter'){
             if (projectTitleInput.value !== ""){
                 const project = new Project(projectTitleInput.value);
+                const removeProj = document.createElement("button");
+                const projectTitleCon = document.createElement("div");
                 projectTitle.textContent = project.getTitle();
+                removeProj.textContent = "X";
                 projects.push(project);
                 console.table(projects);
-                projectContainer.append(projectTitle);
+                projectTitleCon.append(projectTitle);
+                projectContainer.append(projectTitleCon);
 
                 projectTitle.addEventListener("click", () => {
                     setCurrentDisplay(project.getTitle());
                     displayCards(project.getTitle(), project.array);
+                });
+
+                projectTitleCon.addEventListener("mouseover", () => {
+                    console.log("over");
+                    projectTitleCon.append(removeProj);
+                });
+
+                projectTitleCon.addEventListener("mouseleave", () => {
+                    removeProj.remove();
+                });
+
+                removeProj.addEventListener("click", () => {
+                    projects.splice(projects.indexOf(project), 1);
+                    console.log(projects);
+                    projectTitleCon.remove();
                 })
+
                 projectInputCon.remove();
                 projectButton.disabled = false;
             }
