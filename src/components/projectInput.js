@@ -29,11 +29,11 @@ export function projectInput(){
 
                 projectTitle.addEventListener("click", () => {
                     setCurrentDisplay(project.getTitle());
+                    console.table(project.array);
                     displayCards(project.getTitle(), project.array);
                 });
 
                 projectTitleCon.addEventListener("mouseover", () => {
-                    console.log("over");
                     projectTitleCon.append(removeProj);
                 });
 

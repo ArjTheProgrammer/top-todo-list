@@ -66,7 +66,6 @@ function taskCard(task, taskArray){
 
     deleteButton.addEventListener("click", () => {
         taskArray.splice(taskArray.indexOf(task), 1);
-        allTask.array.splice(allTask.array.indexOf(task), 1);
         console.table(taskArray);
         card.remove();
     })
