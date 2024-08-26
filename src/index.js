@@ -1,8 +1,11 @@
 import './style.css';    
 import { taskInput } from "./components/taskInputButton.js";
 import { displayCards, setCurrentDisplay } from "./components/cards.js";
-import { allTask } from './components/arrays.js';
+import { allTask, loadFromLocalStorage } from './components/arrays.js';
 import { projectInput } from './components/projectInput.js';
+
+
+loadFromLocalStorage();
 
 const taskButton = document.querySelector(".task-aside");
 const projectButton = document.querySelector(".project-add");

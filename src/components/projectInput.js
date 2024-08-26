@@ -1,5 +1,5 @@
 import { Project } from "../classes/project.js";
-import { projects } from "./arrays.js";
+import { projects, saveToLocalStorage, loadFromLocalStorage } from "./arrays.js";
 import { displayCards, setCurrentDisplay } from "./cards.js";
 
 const projectContainer = document.querySelector(".project-container");
@@ -24,6 +24,7 @@ export function projectInput(){
                 removeProj.textContent = "X";
                 projects.push(project);
                 console.table(projects);
+                saveToLocalStorage();
                 projectTitleCon.append(projectTitle);
                 projectContainer.append(projectTitleCon);
 
@@ -44,6 +45,7 @@ export function projectInput(){
                 removeProj.addEventListener("click", () => {
                     projects.splice(projects.indexOf(project), 1);
                     console.log(projects);
+                    saveToLocalStorage();
                     projectTitleCon.remove();
                 })
 

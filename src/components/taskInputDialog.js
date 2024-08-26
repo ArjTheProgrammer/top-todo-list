@@ -1,7 +1,7 @@
 import { matrixColors } from "../colors.js";
 import { Task } from "../classes/task.js";
 import { updateDisplayCards, currentDisplay } from "./cards.js";
-import { allTask, projects } from "./arrays.js";
+import { allTask, projects, saveToLocalStorage } from "./arrays.js";
 
 const main = document.querySelector("main");
 const dialog = document.createElement("dialog");
@@ -182,6 +182,7 @@ function getInput(title, date, prio, desc, proj){
     }
     allTask.array.push(addTask);
     updateDisplayCards(proj);
+    saveToLocalStorage();
     clear();
 }
 
@@ -272,6 +273,7 @@ function setInput(task){
     task.setDate(taskDate.value);
     task.setPrio(getPrio(urgentCheckbox, importantCheckbox));
     task.setDesc(taskDescription.value);
+    saveToLocalStorage();
     clear();
 }
 

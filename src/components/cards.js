@@ -1,6 +1,6 @@
 import { matrixColors } from "../colors.js";
 import { taskEditDialog } from "./taskInputDialog.js";
-import { allTask, projects } from "./arrays.js";
+import { allTask, projects, saveToLocalStorage } from "./arrays.js";
 import { isToday, isTomorrow, isYesterday, differenceInDays, differenceInWeeks, differenceInYears, isBefore, startOfDay, format } from 'date-fns';
 
 
@@ -72,6 +72,7 @@ function taskCard(task, taskArray){
             taskArray.splice(taskArray.indexOf(task), 1);
             allTask.array.splice(allTask.array.indexOf(task), 1);
         }
+        saveToLocalStorage();
         console.log(allTask);
         card.remove();
     })
