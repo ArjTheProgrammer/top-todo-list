@@ -1,5 +1,5 @@
 import { Project } from "../classes/project.js";
-import { projects, saveToLocalStorage, loadFromLocalStorage } from "./arrays.js";
+import { projects, saveToLocalStorage } from "./arrays.js";
 import { displayCards, setCurrentDisplay } from "./cards.js";
 
 const projectContainer = document.querySelector(".project-container");

@@ -167,7 +167,18 @@ function checkDueDate(date){
         return 'None';
       }
 
-      else {
-        return format(new Date(date), "MM/dd/yyyy");
-      }
+    else {
+    return format(new Date(date), "MM/dd/yyyy");
+    }
+}
+
+export function displayDueToday(){
+    let dueToday = [];
+    for (let task of allTask.array){
+        if (isToday(task.getDate())){
+            dueToday.push(task);
+        }
+    }
+
+    displayCards("Due Today", dueToday);
 }
