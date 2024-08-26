@@ -1,6 +1,6 @@
 import './style.css';    
 import { taskInput } from "./components/taskInputButton.js";
-import { displayCards, setCurrentDisplay, displayDueToday } from "./components/cards.js";
+import { displayCards, setCurrentDisplay, displayDueToday, displayOverDue } from "./components/cards.js";
 import { allTask, loadFromLocalStorage } from './components/arrays.js';
 import { projectInput } from './components/projectInput.js';
 
@@ -9,6 +9,7 @@ loadFromLocalStorage();
 
 const taskButton = document.querySelector(".task-aside");
 const myDayButton = document.querySelector(".my-day-aside");
+const overdueButton = document.querySelector(".overdue-aside");
 const projectButton = document.querySelector(".project-add");
 
 taskButton.addEventListener("click", () => {
@@ -18,9 +19,12 @@ taskButton.addEventListener("click", () => {
 });
 
 myDayButton.addEventListener("click", () => {
-        console.log("clicked my day");
         displayDueToday();
-})
+});
+
+overdueButton.addEventListener("click", () => {
+        displayOverDue();
+});
 
 projectButton.addEventListener("click", () => {
         projectInput();

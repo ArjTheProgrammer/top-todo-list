@@ -180,5 +180,16 @@ export function displayDueToday(){
         }
     }
 
-    displayCards("Due Today", dueToday);
+    displayCards("Today", dueToday);
+}
+
+export function displayOverDue(){
+    let overDue = [];
+    for (let task of allTask.array){
+        if (isBefore(task.getDate(), startOfDay(new Date()))){
+            overDue.push(task);
+        }
+    }
+
+    displayCards("Overdue", overDue);
 }
